@@ -1,4 +1,6 @@
 <?php
+require_once('./model/Genre.php');
+
 class Movie
 {
     private $_id;
@@ -7,9 +9,10 @@ class Movie
     private $_awards;
     private $_releaseYear;
     private $_length;
-    private $_genreId;
+    private $_genre;
 
-    public function __construct($id, $title, $rating, $awards, $releaseYear, $length, $genre_id)
+
+    public function __construct($id, $title, $rating, $awards, $releaseYear, $length, $genreId, $genreName)
     {
         $this->_id = $id;
         $this->_title = $title;
@@ -17,7 +20,7 @@ class Movie
         $this->_awards = $awards;
         $this->_releaseYear = $releaseYear;
         $this->_length = $length;
-        $this->_genreId = $genre_id;
+        $this->_genre = new Genre($genreId, $genreName);
     }
 
     public function getId()
@@ -44,9 +47,9 @@ class Movie
     {
         return $this->_length;
     }
-    public function getGenreId()
+    public function getGenre()
     {
-        return $this->_genreId;
+        return $this->_genre;
     }
 
     public function setId($id)
@@ -73,8 +76,8 @@ class Movie
     {
         $this->_length = $length;
     }
-    public function setGenre($genreId)
+    public function setGenre($genre)
     {
-        $this->_genreId = $genreId;
+        $this->_genre = $genre;
     }
 }

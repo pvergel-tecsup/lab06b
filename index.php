@@ -1,5 +1,7 @@
 <?php
 require_once('./connection/BaseMySQL.php');
+require_once('./model/Genre.php');
+require_once('./model/Movie.php');
 require_once('./database/MovieDB.php');
 
 $database = BaseMySql::conexion();
@@ -24,11 +26,11 @@ require_once('./layout/header.php');
     </thead>
     <tbody>
     <?php
-    foreach ($peliculas as $item) {
+    foreach ($peliculas as $objeto) {
         echo '<tr>';
-        echo '<td>' . $item['title'] . '</td>';
-        echo '<td>' . $item['genre_name'] . '</td>';
-        echo '<td>' . $item['release_year'] . '</td>';
+        echo '<td>' . $objeto->getTitle() . '</td>';
+        echo '<td>' . $objeto->getGenre()->getName() . '</td>';
+        echo '<td>' . $objeto->getReleaseYear() . '</td>';
         echo '<td>&nbsp;</td>';
         echo '</tr>';
     }
